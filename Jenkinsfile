@@ -22,10 +22,18 @@ pipeline {
         stage('Get Data') {
                 // assign json data to env
             steps {
-                env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
-                env.port = "${sh(script: "jq .port <<< #{env.json_data}", returnStdout: true).trim()}"
-                echo "JSON = ${env.json_data}"
-                echo "PORT = ${env.port}"
+                step {
+                    env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
+                }
+                step {
+                    env.port = "${sh(script: "jq .port <<< #{env.json_data}", returnStdout: true).trim()}"
+                }
+                step {
+                    echo "JSON = ${env.json_data}"
+                }
+                step {
+                    echo "PORT = ${env.port}"
+                }
             }
         }
         

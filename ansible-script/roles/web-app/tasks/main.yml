@@ -1,9 +1,9 @@
 ---
 - hosts: centos 
-    tasks:
-    - name: ensure nginx is at the latest version
-      yum: name=nginx state=latest
-      become: yes
-      notify:
-      - Restart Nginx
+  tasks:
+  - name: ensure nginx is at the latest version
+    yum: name=nginx state=latest
+    become: yes
+    notify:
+    - Restart Nginx
 

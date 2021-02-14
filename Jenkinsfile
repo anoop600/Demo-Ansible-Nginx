@@ -27,23 +27,19 @@ pipeline {
 			}
 			steps {
 				script{
-							env.port = sh(
-								script: " cat nginx-var.json | jq .port ",
-					returnStdout: true
+					env.port = sh(
+						script: " cat nginx-var.json | jq .port ",
+						returnStdout: true
 					).trim()
 					echo "PORT = ${env.port}"
 				}
 				script{
-							env.message = sh(
-								script: " cat nginx-var.json | jq .message ",
-					returnStdout: true
+					env.message = sh(
+					script: " cat nginx-var.json | jq .message ",
+						returnStdout: true
 					).trim()
 					echo "Message = ${env.message}"
 				}
-			}
-			steps{
-					echo "PORT = ${env.port}"
-					echo "Message = ${env.message}"
 			}
         }
     }   

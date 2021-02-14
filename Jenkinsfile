@@ -18,6 +18,14 @@ pipeline {
                 // Get some code from a GitHub repository
                 sh 'cat nginx-var.json'
             }
+            steps {
+                // assign json data to env
+                env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
+                env.port = "${sh(script:'jq .port' <<< '#{env.json_data}', returnStdout: true).trim()}"
+                echo "JSON = ${env.json_data}"
+                echo "PORT = ${env.port}"
+                
+            }
         }
         
     }

@@ -1,5 +1,5 @@
 ---
-message: hi from anoop ! ! ! this is my ansible 201 demo project
-port: 8080
+message: hi from anoop ! ! ! this is v1 of application 
+port: 80
 nginx_config_root: /etc/nginx/conf.d
 nginx_docroot: /var/www/html

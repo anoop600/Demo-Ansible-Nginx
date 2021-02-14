@@ -1,7 +1,4 @@
 ---
-# tasks file for web-app
-#
----
 - hosts: centos 
     tasks:
     - name: ensure nginx is at the latest version

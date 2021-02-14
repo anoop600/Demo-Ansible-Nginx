@@ -1,7 +1,5 @@
 ---
 - hosts:
     - centos
-  tasks:
-    - action: ping
   roles:
     - web-app

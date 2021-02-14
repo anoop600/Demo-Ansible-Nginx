@@ -20,29 +20,31 @@ pipeline {
             }
         }
         stage("Override Variables") {
-            // assign json data to env
-	    environment {
-		port = 8080
-		message = "hi from anoop"
-	    }
-            steps {
-		script{
-                    env.port = sh(
-                        script: ''' cat nginx-var.json | jq .port  ''',
-			returnStdout: true
-		    ).trim()
-		    echo "PORT = ${env.port}"
-		}
-		script{
-                    env.message = sh(
-                        script: ''' cat nginx-var.json | jq .message  ''',
-			returnStdout: true
-		    ).trim()
-		    echo "Message = ${env.message}"
-		}
-            }
-        
+			// assign json data to env
+			environment {
+				port = 8080
+				message = "hi from anoop"
+			}
+			steps {
+				script{
+							env.port = sh(
+								script: " cat nginx-var.json | jq .port ",
+					returnStdout: true
+					).trim()
+					echo "PORT = ${env.port}"
+				}
+				script{
+							env.message = sh(
+								script: " cat nginx-var.json | jq .message ",
+					returnStdout: true
+					).trim()
+					echo "Message = ${env.message}"
+				}
+			}
+			steps{
+					echo "PORT = ${env.port}"
+					echo "Message = ${env.message}"
+			}
         }
-    }
-    
+    }   
 }

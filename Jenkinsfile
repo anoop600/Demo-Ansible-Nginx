@@ -28,7 +28,7 @@ pipeline {
 		}
 		steps{
 			
-				sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts --private-key /opt/azureuser.pem --ssh-extra-args='-o StrictHostKeyChecking=no'"
+				sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
 			
 		}
 	}

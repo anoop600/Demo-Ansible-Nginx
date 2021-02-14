@@ -31,7 +31,7 @@ pipeline {
 		script{
                     //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.port = sh(
-                        script: ''' jq .port ${env.json_data} ''', returnStdout: true).trim()
+                        script: ''' cat nginx-var.json | jq .port  ''', returnStdout: true).trim()
 		    echo "PORT = ${env.port}"
 		}
                 /*script{

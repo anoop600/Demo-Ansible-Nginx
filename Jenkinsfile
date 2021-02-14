@@ -32,7 +32,7 @@ pipeline {
 			message = "${config.message}"
 		}
 		steps{
-			sh "ansible-playbook -i ${WORKSPACE}/inventory/hosts ${WORKSPACE}/ansible-script/first-playbok.yml -e \"@nginx-var.json\""
+			sh "ansible-playbook -i ${WORKSPACE}/inventory/hosts ${WORKSPACE}/ansible-script/main-playbook.yml -e \"@nginx-var.json\""
 		}
 	}
     }

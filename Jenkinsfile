@@ -20,12 +20,14 @@ pipeline {
 			sh 'cat nginx-var.json'
 		}
         }
-	ansiblePlaybook(
-		"credentialsId": 'azureuser',
-		"disableHostKeyChecking": true,
-		"inventory": '${WORKSPACE}/inventory/hosts',
-		"colorized": true,
-		"playbook": '${WORKSPACE}/ansible-script/first-playbok.yml'
-	)
+	stage('Ansible Execution') {
+		ansiblePlaybook(
+			"credentialsId": 'azureuser',
+			"disableHostKeyChecking": true,
+			"inventory": '${WORKSPACE}/inventory/hosts',
+			"colorized": true,
+			"playbook": '${WORKSPACE}/ansible-script/first-playbok.yml'
+		)
+	}
     }
 }

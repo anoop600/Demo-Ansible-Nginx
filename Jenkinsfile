@@ -19,30 +19,27 @@ pipeline {
                 sh 'cat nginx-var.json'
             }
         }
-        stage('Get Data') {
+        stage('Get Data from JSON') {
             // assign json data to env
             steps {
-                script{
+                /*script{
                     //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.json_data = sh(
                         script: ''' cat nginx-var.json''', returnStdout: true).trim()
 		    echo "JSON_DATA = ${env.json_data}"
-		}
+		}*/
 		script{
                     //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.port = sh(
                         script: ''' cat nginx-var.json | jq .port  ''', returnStdout: true).trim()
 		    echo "PORT = ${env.port}"
 		}
-                /*script{
-                    env.port = "${sh(script:"jq .port ${env.json_data}", returnStdout: true).trim()}"
-                }
-                script{
-                    echo "JSON = ${env.json_data}"
-                }
-                script{
-                    echo "PORT = ${env.port}"
-                }*/
+		script{
+                    //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
+                    env.message = sh(
+                        script: ''' cat nginx-var.json | jq .message  ''', returnStdout: true).trim()
+		    echo "PORT = ${env.message}"
+		}
             }
         
         }

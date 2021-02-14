@@ -27,7 +27,9 @@ pipeline {
 			message = "${config.message}"
 		}
 		steps{
-			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts --private-key /opt/azureuser.pem --ssh-extra-args='-o StrictHostKeyChecking=no'"
+			withCredentials([usernameColonPassword(credentialsId: 'azureuser', variable: 'PRIVATE_KEY')]) {
+				sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts --private-key ${PRIVATE_KEY} --ssh-extra-args='-o StrictHostKeyChecking=no'"
+			}
 		}
 	}
     }

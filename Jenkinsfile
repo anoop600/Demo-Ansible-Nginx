@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git url: 'https://github.com/anoop600/Demo-Ansible-Nginx.git'
+                git branch: 'main', url: 'https://github.com/anoop600/Demo-Ansible-Nginx.git'
             }
         }
         stage('Cat') {

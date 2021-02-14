@@ -27,9 +27,10 @@ pipeline {
 			message = "${config.message}"
 		}
 		steps{
-			
-				sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
-			
+			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
+		}
+		steps{
+			sh "ansible-playbook ${WORKSPACE}/ansible-script/first-playbok.yml"
 		}
 	}
     }

@@ -5,15 +5,16 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/anoop600/Demo-Ansible-Nginx.git'
+                git url: 'https://github.com/anoop600/Demo-Ansible-Nginx.git'
+            }
+        }
+        stage('Cat') {
+            steps {
+                // Get some code from a GitHub repository
+                sh 'cat nginx-var.json'
             }
         }
         
     }
-    stage('Cat') {
-            steps {
-                // Get some code from a GitHub repository
-                cat 'nginx-var.json'
-            }
-        }
+    
 }

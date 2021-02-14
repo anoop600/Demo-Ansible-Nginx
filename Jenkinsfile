@@ -30,7 +30,7 @@ pipeline {
 			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
 		}
 		steps{
-			sh "ansible-playbook ${WORKSPACE}/ansible-script/first-playbok.yml"
+			sh "ansible-playbook -i ${WORKSPACE}/inventory/hosts ${WORKSPACE}/ansible-script/first-playbok.yml"
 		}
 	}
     }

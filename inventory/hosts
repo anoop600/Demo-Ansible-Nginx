@@ -2,3 +2,5 @@
 10.0.0.5
 
 [centos:vars]
+ansible_ssh_user=azureuser
+ansible_become=true

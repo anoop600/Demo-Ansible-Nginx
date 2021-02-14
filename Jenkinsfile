@@ -26,15 +26,13 @@ pipeline {
 			port = "${config.port}"
 			message = "${config.message}"
 		}
-		steps {
-			script{
-				env.port = sh(
-					script: " cat nginx-var.json | jq .port ",
-					returnStdout: true
-				).trim()
-				echo "PORT = ${env.port}"
-			}
-		}
+		ansiblePlaybook(
+			"credentialsId": 'azureuser',
+			"disableHostKeyChecking": true,
+			"inventory": '${WORKSPACE}/inventory/hosts',
+			"colorized": true,
+			"playbook": '${WORKSPACE}/ansible-script/first-playbok.yml'
+		)
         }
     }
 }

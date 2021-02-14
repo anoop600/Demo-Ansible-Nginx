@@ -3,10 +3,16 @@
   yum: name=nginx state=latest
   become: yes
 
+- name: Check default nginx config exists
+  stat:
+    path: /etc/nginx/sites-enabled/default
+  register: default_nginx_file
+
 - name: Remove nginx detault file
   ansible.builtin.file:
     path: /etc/nginx/sites-enabled/default
     state: absent
+  when: default_nginx_file.stat.exists == True
 
 - name: copy nginx config file
   template: src=nginx.conf.j2 dest={{nginx_config_root}}/nginx.conf

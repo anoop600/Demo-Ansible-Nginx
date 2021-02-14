@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        port = 8080
+        message = "hi from anoop"
+    }
 
     stages {
         stage('Build') {

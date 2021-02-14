@@ -8,7 +8,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/anoop600/Demo-Ansible-Nginx.git'
             }
         }
-        stage('Cat') {
+        stage('Print Environment Variables') {
             steps {
                 // Get some code from a GitHub repository
                 sh 'cat nginx-var.json'

@@ -26,14 +26,8 @@ pipeline {
 			port = "${config.port}"
 			message = "${config.message}"
 		}
-		sshagent (credentials: ['azureuser']) {
-			ansiblePlaybook(
-				"credentialsId": 'azureuser',
-				"disableHostKeyChecking": true,
-				"inventory": '${WORKSPACE}/inventory/hosts',
-				"colorized": true,
-				"playbook": '${WORKSPACE}/ansible-script/first-playbok.yml'
-			)
+		steps{
+			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts --private-key /opt/azureuser.pem"
 		}
 	}
     }

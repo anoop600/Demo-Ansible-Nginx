@@ -2,6 +2,16 @@
 - name: ensure nginx is at the latest version
   yum: name=nginx state=latest
   become: yes
+
+- name: Remove nginx detault file
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: copy nginx config file
+  template: src=nginx.conf.j2 dest={{nginx_config_root}}/nginx.conf
   notify:
   - Restart Nginx
 
+- name: copt index.html to docroot
+  template: src=index.html.j2 dest={{nginx_docroot}}/index.html

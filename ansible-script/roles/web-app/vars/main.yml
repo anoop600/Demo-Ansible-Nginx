@@ -1,2 +1,5 @@
 ---
-# vars file for web-app
+message: hi from anoop ! ! ! this is my ansible 201 demo project
+port: 8080
+nginx_config_root: /etc/nginx/conf.d
+nginx_docroot: /var/www/html

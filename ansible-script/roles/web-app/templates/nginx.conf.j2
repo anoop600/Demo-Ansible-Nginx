@@ -1,0 +1,14 @@
+server {  
+    listen {{ port }};
+    server_name _;
+
+    access_log /var/log/nginx/web-app-access.log;
+    error_log  /var/log/nginx/web-app-error.log;
+
+    root /home/azureuser/www;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

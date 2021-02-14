@@ -26,8 +26,7 @@ pipeline {
                     //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.json = sh(
                         script: ''' cat nginx-var.json''', returnStdout: true).trim()
-                    )
-				}
+		}
                 /*script{
                     env.port = "${sh(script:"jq .port ${env.json_data}", returnStdout: true).trim()}"
                 }

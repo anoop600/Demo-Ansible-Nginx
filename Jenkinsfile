@@ -20,14 +20,16 @@ pipeline {
 			sh 'cat nginx-var.json'
 		}
         }
+	stage('Ansible Ping all hosts') {
+		steps{
+			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
+		}
+	}
 	stage('Ansible Execution') {
 		environment {
 			def config = readJSON file: 'nginx-var.json'
 			port = "${config.port}"
 			message = "${config.message}"
-		}
-		steps{
-			sh "ansible centos -m ping -i ${WORKSPACE}/inventory/hosts"
 		}
 		steps{
 			sh "ansible-playbook -i ${WORKSPACE}/inventory/hosts ${WORKSPACE}/ansible-script/first-playbok.yml"

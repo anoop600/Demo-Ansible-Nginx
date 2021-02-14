@@ -26,7 +26,13 @@ pipeline {
                     //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.json_data = sh(
                         script: ''' cat nginx-var.json''', returnStdout: true).trim()
-		    echo "JSNO_DATA = ${env.json_data}"
+		    echo "JSON_DATA = ${env.json_data}"
+		}
+		script{
+                    //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
+                    env.port = sh(
+                        script: ''' jq .port ${env.json_data} ''', returnStdout: true).trim()
+		    echo "PORT = ${env.port}"
 		}
                 /*script{
                     env.port = "${sh(script:"jq .port ${env.json_data}", returnStdout: true).trim()}"

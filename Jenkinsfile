@@ -19,26 +19,26 @@ pipeline {
                 sh 'cat nginx-var.json'
             }
         }
-        stage('Get Data from JSON') {
+        stage("Override Variables") {
             // assign json data to env
+	    environment {
+		port = 8080
+		message = "hi from anoop"
+	    }
             steps {
-                /*script{
-                    //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
-                    env.json_data = sh(
-                        script: ''' cat nginx-var.json''', returnStdout: true).trim()
-		    echo "JSON_DATA = ${env.json_data}"
-		}*/
 		script{
-                    //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.port = sh(
-                        script: ''' cat nginx-var.json | jq .port  ''', returnStdout: true).trim()
+                        script: ''' cat nginx-var.json | jq .port  ''',
+			returnStdout: true
+		    ).trim()
 		    echo "PORT = ${env.port}"
 		}
 		script{
-                    //env.json_data = "${sh(script:'cat nginx-var.json', returnStdout: true).trim()}"
                     env.message = sh(
-                        script: ''' cat nginx-var.json | jq .message  ''', returnStdout: true).trim()
-		    echo "PORT = ${env.message}"
+                        script: ''' cat nginx-var.json | jq .message  ''',
+			returnStdout: true
+		    ).trim()
+		    echo "Message = ${env.message}"
 		}
             }
         

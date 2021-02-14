@@ -19,7 +19,7 @@ pipeline {
 			sh 'cat nginx-var.json'
 		}
         }
-        stage("Override Variables") {
+        stage("Execute Ansible Script") {
 		// assign json data to env
 		environment {
 			def config = readJSON file: 'nginx-var.json'
@@ -33,13 +33,6 @@ pipeline {
 					returnStdout: true
 				).trim()
 				echo "PORT = ${env.port}"
-			}
-			script{
-				env.message = sh(
-				script: " cat nginx-var.json | jq .message ",
-					returnStdout: true
-				).trim()
-				echo "Message = ${env.message}"
 			}
 		}
         }
